@@ -16,7 +16,6 @@ async function selectUsuarios() {
   return res.rows;
 }
 
-export { selectUsuarios };
 async function selectUsuario(id) {
     const client = await connect();
     const query = "SELECT * FROM usuario WHERE id = $1";

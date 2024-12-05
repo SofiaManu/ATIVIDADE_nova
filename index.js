@@ -1,18 +1,18 @@
 //index.js
 import dotenv from "dotenv";
 import express from "express";
-import { selectUsuarios } from "./bd.js";
+import { selectUsuarios, selectUsuario } from "./bd.js";
 
 dotenv.config();
 
 const app = express(); // Instancia o Express
-const port = 3001; // Define a porta
+const port = 3000; // Define a porta
 
 app.get("/", (req, res) => {
   console.log("Rota / solicitada");
   // Cria a rota da raiz do projeto
   res.json({
-    nome: "Sofia Dias", // Substitua pelo seu nome
+    nome: "Sofia Manuella", // Substitua pelo seu nome
   });
 });
 
@@ -27,11 +27,6 @@ app.get("/usuarios", async (req, res) => {
   console.log("Rota GET/usuarios solicitada");
 });
 
-app.listen(port, () => {
-  // Um socket para "escutar" as requisições
-  console.log(`Serviço escutando na porta:  ${port}`);
-});
-import { selectUsuarios, selectUsuario } from "./bd.js";
 app.get("/usuario/:id", async (req, res) => {
   console.log("Rota GET /usuario/# solicitada");
   try {
@@ -41,4 +36,10 @@ app.get("/usuario/:id", async (req, res) => {
   } catch (error) {
     res.status(error.status || 500).json({ message: error.message || "Erro!" });
   }
+});
+
+
+app.listen(port, () => {
+  // Um socket para "escutar" as requisições
+  console.log(`Serviço escutando na porta:  ${port}`);
 });
